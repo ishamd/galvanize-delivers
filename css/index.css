@@ -20,6 +20,10 @@ div.bottom-landing {
   padding-right: 15px;
 }
 
+div.top-margin {
+  margin-top: 50px;
+}
+
 .hero-image {
     background-image: url("../img/hero.jpg");
     height: 350px;
@@ -44,6 +48,7 @@ div.bottom-landing {
 
 .order-btn {
   background-color: #ff4d88;
+  color: white;
 }
 
 h3.pink-text {
