@@ -1,0 +1,64 @@
+Body {
+  font-family: 'Roboto', sans-serif;
+}
+
+footer {
+  background-color: #003d99;
+  color: white;
+}
+
+div.bottom-landing {
+  background-color: #3366ff;
+  color: white;
+}
+
+.nav-colors {
+  background-color: #3366ff;
+  border-color: #3366ff;
+  color: white;
+  margin-bottom: 5px;
+  padding-right: 15px;
+}
+
+.hero-image {
+    background-image: url("../img/hero.jpg");
+    height: 350px;
+    margin-top: 50px;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.order-btn {
+  background-color: #ff4d88;
+}
+
+h3.pink-text {
+  color: #ff4d88;
+}
+
+a:link {
+  color: white;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+a:active {
+  color: white;
+}
