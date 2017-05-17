@@ -6,45 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link rel="stylesheet" href="css/index.css">
+
   <title>Galvanize Delivers!</title>
 </head>
 
 <body>
-  <nav class = "navbar navbar-default" role = "navigation">
+  <nav class="navbar navbar-default" role="navigation">
 
-     <div class = "navbar-header">
-        <button type = "button" class = "navbar-toggle"
-           data-toggle = "collapse" data-target = "#example-navbar-collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
            <span class = "sr-only">Toggle navigation</span>
            <span class = "icon-bar"></span>
            <span class = "icon-bar"></span>
            <span class = "icon-bar"></span>
         </button>
 
-        <a class = "navbar-brand" href = "index.html">Galvanize Delivers</a>
-     </div>
+      <a class="navbar-brand" href="index.html">Galvanize Delivers</a>
+      <div class="collapse navbar-collapse" id="example-navbar-collapse">
 
-     <div class = "collapse navbar-collapse" id = "example-navbar-collapse">
-
-        <ul class = "nav navbar-nav">
-           <li class = "active"><a href = "order.html">Order Delivery</a></li>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="order.html">Order Delivery</a></li>
         </ul>
-     </div>
+      </div>
+
+    </div>
 
   </nav>
 
-  <!-- <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid nav-colors">
-      <h3><a class="navbar-left nav-colors" href="index.html">Galvanize Delivers</a></h3>
-      <h5><a class="navbar-right nav-colors" href="order.html">Order Delivery</a></h5>
-    </div>
-  </nav> -->
   <main>
 
     <div class="container-fluid top-margin">
@@ -142,6 +141,8 @@
                   <textarea class="form-control" rows="3" id="customer-address" placeholder="123 Main St."></textarea>
                 </div>
                 <button id="place-order" class="btn order-btn" type="">PLACE ORDER</button>
+                <div id='success' class='alert alert-success' role='alert'>Thank you! Your order has been placed.</div>
+                <div id='danger' class='alert alert-danger' role='alert'>Oops! Please complete your order.</div>
               </form>
             </div>
           </div>
@@ -149,7 +150,6 @@
         <div class=col-md-1></div>
       </div>
     </div>
-
 
     <div class="container-fluid">
       <div class="row bottom-landing">
@@ -180,146 +180,7 @@
       <div class=col-md-1></div>
     </div>
   </footer>
+  <script src='js/order.js'></script>
 </body>
 
 </html>
-
-<script>
-  // Add ID's to order elements so they can be grabbed
-  // Grab order elements using getElementById
-  // add event listener to each order elements
-  // once order element is clicked:
-  // add a new row to the table body element
-  // add new table data element with the name of the item clicked
-  // add new table data element with the price of the item clicked
-  // add the price of the item clicked to the subtotal global variable
-  // update the innerhtml for the subtotal, tax, and total cells in the table
-
-
-  function updateOrder() {
-
-    let subtotal = document.getElementById('subtotal');
-    let tax = document.getElementById('tax');
-    let total = document.getElementById('total');
-
-    let subtotalValue = parseInt(0);
-    let taxValue = parseInt(0);
-    let totalValue = parseInt(0);
-
-    let tableBody = document.getElementById('table-body');
-    let burgerOrder = document.getElementById('burgerOrder');
-    let pizzaOrder = document.getElementById('pizzaOrder');
-    let ribsOrder = document.getElementById('ribsOrder');
-    let iceCreamOrder = document.getElementById('iceCreamOrder');
-
-    let placeOrder = document.getElementById('place-order');
-    let customerName = document.getElementById('customer-name');
-    let nameValue;
-    let customerTel = document.getElementById('customer-tel');
-    let telValue;
-    let customerAddress = document.getElementById('customer-address');
-    let addressValue;
-
-    let burgerPrice = 8.99;
-    let pizzaPrice = 11.99;
-    let ribsPrice = 14.99;
-    let iceCreamPrice = 7.99;
-    let numberOfItems = 0;
-
-    burgerOrder.addEventListener('click', function() {
-      let newRow = document.createElement('tr');
-      let newItem = document.createElement('td');
-      let newPrice = document.createElement('td');
-      tableBody.appendChild(newRow);
-      newRow.appendChild(newItem).textContent = 'Royale with Cheese';
-      newRow.appendChild(newPrice).textContent = `$${burgerPrice}`;
-      subtotalValue += burgerPrice;
-      taxValue = subtotalValue * 0.1;
-      totalValue = subtotalValue + taxValue;
-      subtotal.textContent = `$${subtotalValue.toFixed(2)}`;
-      tax.textContent = `$${taxValue.toFixed(2)}`;
-      total.textContent = `$${totalValue.toFixed(2)}`;
-      numberOfItems++;
-    })
-
-    pizzaOrder.addEventListener('click', function() {
-      let newRow = document.createElement('tr');
-      let newItem = document.createElement('td');
-      let newPrice = document.createElement('td');
-      tableBody.appendChild(newRow);
-      newRow.appendChild(newItem).textContent = 'Arugula Pie';
-      newRow.appendChild(newPrice).textContent = `$${pizzaPrice}`;
-      subtotalValue += pizzaPrice;
-      taxValue = subtotalValue * 0.1;
-      totalValue = subtotalValue + taxValue;
-      subtotal.textContent = `$${subtotalValue.toFixed(2)}`;
-      tax.textContent = `$${taxValue.toFixed(2)}`;
-      total.textContent = `$${totalValue.toFixed(2)}`;
-      numberOfItems++;
-    })
-
-    ribsOrder.addEventListener('click', function() {
-      let newRow = document.createElement('tr');
-      let newItem = document.createElement('td');
-      let newPrice = document.createElement('td');
-      tableBody.appendChild(newRow);
-      newRow.appendChild(newItem).textContent = 'Smoked Swine';
-      newRow.appendChild(newPrice).textContent = `$${ribsPrice}`;
-      subtotalValue += ribsPrice;
-      taxValue = subtotalValue * 0.1;
-      totalValue = subtotalValue + taxValue;
-      subtotal.textContent = `$${subtotalValue.toFixed(2)}`;
-      tax.textContent = `$${taxValue.toFixed(2)}`;
-      total.textContent = `$${totalValue.toFixed(2)}`;
-      numberOfItems++;
-    })
-
-    iceCreamOrder.addEventListener('click', function() {
-      let newRow = document.createElement('tr');
-      let newItem = document.createElement('td');
-      let newPrice = document.createElement('td');
-      tableBody.appendChild(newRow);
-      newRow.appendChild(newItem).textContent = 'Ice Cream Biscuit';
-      newRow.appendChild(newPrice).textContent = `$${iceCreamPrice}`;
-      subtotalValue += iceCreamPrice;
-      taxValue = subtotalValue * 0.1;
-      totalValue = subtotalValue + taxValue;
-      subtotal.textContent = `$${subtotalValue.toFixed(2)}`;
-      tax.textContent = `$${taxValue.toFixed(2)}`;
-      total.textContent = `$${totalValue.toFixed(2)}`;
-      numberOfItems++;
-    })
-
-    placeOrder.addEventListener('click', function(event) {
-      event.preventDefault();
-      let nameValue = customerName.value;
-      let telValue = customerTel.value;
-      let addressValue = customerAddress.value;
-
-      if (nameValue !== '' && telValue !== '' && addressValue !== '' && numberOfItems !== 0) {
-        let form = document.getElementById('form');
-        let div = document.createElement('div');
-        div.className = "alert alert-success"
-        div.setAttribute('role', 'alert');
-        div.textContent = 'Thank you! Your order has been placed.'
-        form.appendChild(div);
-      } else {
-        let form = document.getElementById('form');
-        let div = document.createElement('div');
-        div.className = "alert alert-danger"
-        div.setAttribute('role', 'alert');
-        div.textContent = 'Oops! Please provide additional information.'
-        form.appendChild(div);
-      }
-
-    });
-
-    // set timeout or set toggle on/off display for the success alert
-    // right aligned link in the navbar should collapse into a hamburger icon on medium viewports
-    // deploy the site to surge
-    // copy
-
-  }
-
-  updateOrder();
-</script>

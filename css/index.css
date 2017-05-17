@@ -78,22 +78,23 @@ a:active {
 }
 
 .navbar-default {
-  background-color: blue;
-  border-color: blue;
+  background-color: #3366ff;
+  border-color: #3366ff;
   margin-bottom: 0px;
   border-radius: 0px;
   color: white;
+  padding: 0px;
 }
 
 .navbar-header {
-  background-color: blue;
-  border-color: blue;
+  background-color: #3366ff;
+  border-color: #3366ff;
   margin-bottom: 0px;
   color: white;
 }
 
 .navbar-collapse {
-  background-color: blue;
+  background-color: #3366ff;
   color: white;
 }
 
@@ -103,4 +104,8 @@ a:active {
 
 .navbar-default .navbar-nav>li>a {
   color: white;
+}
+
+#success, #danger {
+  display: none;
 }
